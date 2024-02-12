@@ -1,28 +1,52 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const GitHunUser = () => {
-  const accessToken = "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";
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const getusers = async () => {
+    try {
+      const response = await fetch(" https://api.github.com/users");
+      setUsers(await response.json());
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   useEffect(() => {
-    const fetchdata = async () => {
-      try {
-        const response = await fetch(`https://api.github.com/users/bipin`);
-        const result = await response.json();
-        console.log(result);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchdata();
+    getusers();
   });
+
+  if (loading) {
+    return <h1>loading.....</h1>;
+  }
+  if (error) {
+    return <p>ERROR:{error}</p>;
+  }
+
   return (
-    <div className="github-user-card">
-      <img src="" className="user-avatar" />
-      <div className="user-info">
-        <h2>name</h2>
-        <p>Username: </p>
-        <p>Number of Repositories: </p>
-      </div>
-    </div>
+    <>
+      {users.map((curreelm) => {
+        return (
+          <div
+            key={curreelm.id}
+            className="card mx-3 my-3 flex"
+            style={{ width: "18rem" }}
+          >
+            <img
+              src={curreelm.avatar_url}
+              className="card-img-top"
+              alt="User Image"
+            />
+            <div className="card-body d-flex flex-column">
+              <h5 className="card-title">{curreelm.name}</h5>
+              <p className="card-text">No of Repos: {curreelm.repos_url}</p>
+            </div>
+          </div>
+        );
+      })}
+    </>
   );
 };
 
