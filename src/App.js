@@ -5,6 +5,7 @@ import GitHunUser from "./component/GitHubUser.js/GitHunUser";
 import ThemeSwitcher from "./component/theme.js/ToogleButtonTochange";
 import { ThemeProvider } from "../src/component/theme.js/ThemeContext";
 import Counter from "./component/HOF/Counter";
+import Loading from "./Lazyloading/Loading";
 
 const App = () => {
   return (
@@ -14,7 +15,8 @@ const App = () => {
       {/* <ThemeProvider>
         <ThemeSwitcher />
       </ThemeProvider> */}
-      <Counter />
+      {/* <Counter />/ */}
+      <Loading />
     </div>
   );
 };

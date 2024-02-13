@@ -9,7 +9,7 @@ const DarkTheme = () => {
       style={{
         backgroundColor: theme === "dark" ? "#333" : "#555",
         color: "#fff",
-        padding: "20px",
+        height: "100vh",
       }}
     >
       <h1>Dark Theme Content</h1>

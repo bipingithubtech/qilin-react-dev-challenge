@@ -9,7 +9,7 @@ const LightTheme = () => {
       style={{
         backgroundColor: theme === "light" ? "#fff" : "#eee",
         color: "#333",
-        padding: "20px",
+        height: "100vh",
       }}
     >
       <h1>Light Theme Content</h1>
